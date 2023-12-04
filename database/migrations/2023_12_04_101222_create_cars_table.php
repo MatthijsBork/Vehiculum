@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('number');
             $table->bigInteger('mileage');
             $table->date('mot');
+            $table->foreignId('brand_id')->constrained('brands')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
