@@ -17,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CarController::class, 'index'])->name('index');
 
-Route::prefix('cars')->name('cars')->group(function() {
+Route::prefix('cars')->name('cars')->group(function () {
     Route::get('show', [CarController::class, 'show'])->name('.show');
-
 });
 
 Route::get('/dashboard', function () {
@@ -30,6 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::prefix('dashboard')->name('dashboard')->group(function () {
+        Route::prefix('cars')->name('.cars')->group(function () {
+            Route::get('', [CarController::class, 'dashboard']);
+        });
+        // Route::get('cars', [CarController::class, 'show'])->name('.show');
+    });
 });
 
 require __DIR__ . '/auth.php';

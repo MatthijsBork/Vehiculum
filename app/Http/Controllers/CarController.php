@@ -12,4 +12,10 @@ class CarController extends Controller
         $cars = Car::orderBy('created_at')->paginate(10);
         return view('cars.index', compact('cars'));
     }
+
+    public function dashboard()
+    {
+        $cars = Car::orderBy('created_at')->paginate(10);
+        return view('cars.dashboard', compact('cars'));
+    }
 }
