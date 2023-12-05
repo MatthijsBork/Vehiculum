@@ -28,22 +28,16 @@ class UserController extends Controller
 
     public function create()
     {
-        $this->authorize('isAdmin', [User::class, Auth::User()]);
-
         return view('users.create');
     }
 
     public function edit(User $user)
     {
-        $this->authorize('isAdmin', [User::class, Auth::User()]);
-
         return view('users.edit', compact('user'));
     }
 
     public function store(UserStoreRequest $request): RedirectResponse
     {
-        $this->authorize('isAdmin', [User::class, Auth::User()]);
-
         if ($request->input('admin')) {
             $admin = true;
         } else {
@@ -68,8 +62,6 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
-        $this->authorize('isAdmin', [User::class, Auth::User()]);
-
         $user->name = Str::ucfirst($request->name);
         $user->email = $request->email;
         $user->telephone = $request->telephone;
@@ -85,16 +77,12 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $this->authorize('isAdmin', [User::class, Auth::User()]);
-
         $users = User::orderBy('name', 'asc')->paginate(10);
         return view('users.dashboard', compact('users'));
     }
 
     public function delete(User $user)
     {
-        $this->authorize('isAdmin', [User::class, Auth::User()]);
-
         $user->delete();
         return redirect()->route('dashboard.users')->with('success', 'Gebruiker verwijderd');
     }

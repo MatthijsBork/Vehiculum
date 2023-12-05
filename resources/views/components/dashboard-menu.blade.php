@@ -7,5 +7,11 @@
         <li class="mb-2">
             <x-button-link href="{{ route('dashboard.properties') }}" :active="request()->routeIs('dashboard.properties*')">Eigenschappen</x-button-link>
         </li>
+        <li class="mb-2">
+            <x-button-link href="{{ route('dashboard.brands') }}" :active="request()->routeIs('dashboard.brands*')">Merken</x-button-link>
+        </li>
+        <li class="mb-2">
+            <x-button-link href="{{ route('dashboard.users') }}" :active="request()->routeIs('dashboard.users*')">Gebruikers</x-button-link>
+        </li>
     </ul>
 </div>

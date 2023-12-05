@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,30 @@ Route::middleware('auth')->group(function () {
                 Route::get('edit', [PropertyController::class, 'edit'])->name('.edit');
                 Route::post('update', [PropertyController::class, 'update'])->name('.update');
                 Route::get('delete', [PropertyController::class, 'delete'])->name('.delete');
+            });
+        });
+
+        // BRANDS
+        Route::prefix('brands')->name('.brands')->group(function () {
+            Route::get('', [BrandController::class, 'dashboard']);
+            Route::get('create', [BrandController::class, 'create'])->name('.create');
+            Route::post('store', [BrandController::class, 'store'])->name('.store');
+            Route::prefix('{brand}')->group(function () {
+                Route::get('edit', [BrandController::class, 'edit'])->name('.edit');
+                Route::post('update', [BrandController::class, 'update'])->name('.update');
+                Route::get('delete', [BrandController::class, 'delete'])->name('.delete');
+            });
+        });
+
+        // USERS
+        Route::prefix('users')->name('.users')->group(function () {
+            Route::get('', [UserController::class, 'dashboard']);
+            Route::get('create', [UserController::class, 'create'])->name('.create');
+            Route::post('store', [UserController::class, 'store'])->name('.store');
+            Route::prefix('{user}')->group(function () {
+                Route::get('edit', [UserController::class, 'edit'])->name('.edit');
+                Route::post('update', [UserController::class, 'update'])->name('.update');
+                Route::get('delete', [UserController::class, 'delete'])->name('.delete');
             });
         });
         // Route::get('cars', [CarController::class, 'show'])->name('.show');
