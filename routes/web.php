@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,8 +32,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('dashboard')->name('dashboard')->group(function () {
+        // CARS
         Route::prefix('cars')->name('.cars')->group(function () {
             Route::get('', [CarController::class, 'dashboard']);
+            Route::get('create', [CarController::class, 'create'])->name('.create');
+        });
+
+        // PROPERTIES
+        Route::prefix('properties')->name('.properties')->group(function () {
+            Route::get('', [PropertyController::class, 'dashboard']);
+            Route::get('create', [PropertyController::class, 'create'])->name('.create');
+            Route::post('store', [PropertyController::class, 'store'])->name('.store');
+            Route::prefix('{property}')->group(function () {
+                Route::get('edit', [PropertyController::class, 'edit'])->name('.edit');
+                Route::post('update', [PropertyController::class, 'update'])->name('.update');
+                Route::get('delete', [PropertyController::class, 'delete'])->name('.delete');
+            });
         });
         // Route::get('cars', [CarController::class, 'show'])->name('.show');
     });

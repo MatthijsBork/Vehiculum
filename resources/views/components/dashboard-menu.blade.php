@@ -2,7 +2,10 @@
     <h2 class="mb-4 text-lg font-semibold">Dashboard menu</h2>
     <ul>
         <li class="mb-2">
-            <x-button-link href="{{ route('index') }}" :active="request()->routeIs('index*')">Auto's</x-button-link>
+            <x-button-link href="{{ route('dashboard.cars') }}" :active="request()->routeIs('dashboard.cars*')">Auto's</x-button-link>
+        </li>
+        <li class="mb-2">
+            <x-button-link href="{{ route('dashboard.properties') }}" :active="request()->routeIs('dashboard.properties*')">Eigenschappen</x-button-link>
         </li>
     </ul>
 </div>
