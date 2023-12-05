@@ -72,7 +72,7 @@ class UserController extends Controller
         $user->is_admin = $request->admin ?? 0;
         $user->save();
 
-        return redirect()->route('dashboard.users', [$user])->with('success', 'Gebruiker toegevoegd');
+        return redirect()->route('dashboard.users', [$user])->with('success', 'Gebruiker opgeslagen');
     }
 
     public function dashboard()

@@ -46,14 +46,14 @@
             <x-input-label for="city">Stad</x-input-label>
             <input type="text" id="city" name="city" value="{{ $user->city ?? old('city') }}"
                 class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
-            @error('postal')
+            @error('city')
                 <div class="text-red-500">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-4">
             <x-input-label for="admin">Admin</x-input-label>
-            <input type="checkbox" id="admin" name="admin" value="{{ $user->is_admin ?? old('admin') }}"
-                class="rounded-lg">
+            <input type="checkbox" id="admin" name="admin" value="1"
+                class="rounded-lg"{{ (old('admin') ?? $user->is_admin == 1) ? 'checked' : '' }}>
             @error('admin')
                 <div class="text-red-500">{{ $message }}</div>
             @enderror

@@ -24,20 +24,30 @@ Route::prefix('cars')->name('cars')->group(function () {
     Route::get('show', [CarController::class, 'show'])->name('.show');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::prefix('dashboard')->name('dashboard')->group(function () {
+
+    // Route::get('admin_area', ['middleware' => 'admin', function () {
+
+    // }]);
+    Route::prefix('dashboard')->name('dashboard')->middleware('admin')->group(function () {
+        Route::get('', function () {
+            return view('dashboard');
+        });
+
         // CARS
         Route::prefix('cars')->name('.cars')->group(function () {
             Route::get('', [CarController::class, 'dashboard']);
             Route::get('create', [CarController::class, 'create'])->name('.create');
+            Route::get('store', [CarController::class, 'store'])->name('.store');
+            Route::prefix('{car}')->group(function () {
+                Route::get('edit', [CarController::class, 'edit'])->name('.edit');
+                Route::post('update', [CarController::class, 'update'])->name('.update');
+                Route::get('delete', [CarController::class, 'delete'])->name('.delete');
+            });
         });
 
         // PROPERTIES
@@ -76,7 +86,7 @@ Route::middleware('auth')->group(function () {
             });
         });
         // Route::get('cars', [CarController::class, 'show'])->name('.show');
-    });
+    })->middleware('admin');
 });
 
 require __DIR__ . '/auth.php';

@@ -37,6 +37,7 @@ class UserUpdateRequest extends FormRequest
             'telephone' => ['required', 'string', 'max:32'],
             'address' => ['required', 'string', 'max:64'],
             'postal' => ['required', 'string', 'max:8'],
+            'city' => ['required', 'string'],
             'admin' => ['nullable', 'integer'],
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ];
