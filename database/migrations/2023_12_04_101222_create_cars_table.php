@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->bigInteger('number');
             $table->bigInteger('mileage');
+            $table->bigInteger('year');
+            $table->bigInteger('price');
             $table->string('plate');
             $table->date('mot');
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnUpdate()->cascadeOnDelete();

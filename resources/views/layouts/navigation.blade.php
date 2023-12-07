@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('index*')">
+                    <x-nav-link :href="route('cars.index')" :active="request()->routeIs('cars*')">
                         Auto's
                     </x-nav-link>
                     @if ((Auth::user()->is_admin ?? 0) == 1)
@@ -25,7 +25,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                @if ((Auth::user()->is_admin ?? 0) == 1)
+                @if (Auth::user())
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -44,9 +44,9 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            {{-- <x-dropdown-link :href="route('user.companies')">
-                                Mijn bedrijven
-                            </x-dropdown-link> --}}
+                            <x-dropdown-link :href="route('user.cars')">
+                                Mijn auto's
+                            </x-dropdown-link>
 
                             <!-- Authentication -->
                             <x-dropdown-link href="#"
@@ -86,6 +86,9 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+        <x-responsive-nav-link :href="route('user.cars')" :active="request()->routeIs('user.cars.*')">
+            Mijn auto's
+        </x-responsive-nav-link>
         @if ((Auth::user()->is_admin ?? 0) == 1)
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard.*')">
@@ -102,8 +105,8 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('index')">
-                    Mijn bedrijven
+                <x-responsive-nav-link :href="route('user.cars')">
+                    Mijn auto's
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

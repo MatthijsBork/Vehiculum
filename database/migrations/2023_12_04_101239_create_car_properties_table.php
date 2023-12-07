@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('car_properties', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignId('car_id')->constrained('cars')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('property_id')->constrained('properties')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('name');
+            $table->string('value');
+            $table->timestamps();
         });
     }
 

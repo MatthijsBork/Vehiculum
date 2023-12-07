@@ -75,9 +75,10 @@ class UserController extends Controller
         return redirect()->route('dashboard.users', [$user])->with('success', 'Gebruiker opgeslagen');
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        $users = User::orderBy('name', 'asc')->paginate(10);
+        $query = $request->input('query');
+        $users = User::where('name', 'like', "%$query%")->orderBy('name', 'asc')->paginate(10);
         return view('users.dashboard', compact('users'));
     }
 

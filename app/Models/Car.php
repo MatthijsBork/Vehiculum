@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function properties()
+    {
+        return $this->hasMany(CarProperty::class);
+    }
+
+    public static function getAllProperties()
+    {
+        return Property::all();
+    }
 }

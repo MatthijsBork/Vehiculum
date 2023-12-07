@@ -36,24 +36,11 @@
                     </div>
                 @endif
                 <div class="justify-between md:flex">
-                    <div class="w-full md:w-1/6 lg:w-1/5">
-                        @if (isset($menuSlot))
-                            {{ $menuSlot }}
-                        @else
-                            <x-filter-menu></x-filter-menu>
-                        @endif
-                    </div>
-                    <div class="w-full md:w-3/4">
+                    <div class="w-full">
                         <div class="w-full">
                             <div class="mb-2 flex items-center justify-between">
                                 <div class="flex-shrink-0">
-                                    <h1 class="text-2xl font-semibold">{{ $titleSlot ?? "Auto's" }}</h1>
-                                </div>
-                                <div class="flex-grow mx-6">
-                                    <x-search :action="null"></x-search>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <x-primary-button>Toevoegen</x-primary-button>
+                                    <a class="text-blue-500 hover:underline" onclick="javascript.history.back()" href="">< Terug</a>
                                 </div>
                             </div>
                             <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">

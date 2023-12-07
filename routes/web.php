@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CarPropertiesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 
@@ -21,7 +22,10 @@ use App\Http\Controllers\PropertyController;
 Route::get('/', [CarController::class, 'index'])->name('index');
 
 Route::prefix('cars')->name('cars')->group(function () {
-    Route::get('show', [CarController::class, 'show'])->name('.show');
+    Route::get('', [CarController::class, 'index'])->name('.index');
+    Route::prefix('{car}')->group(function () {
+        Route::get('show', [CarController::class, 'show'])->name('.show');
+    });
 });
 
 Route::middleware('auth')->group(function () {
@@ -30,9 +34,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    // Route::get('admin_area', ['middleware' => 'admin', function () {
+    // USER
+    Route::prefix('user')->name('user')->group(function () {
+        Route::prefix('cars')->name('.cars')->group(function () {
+            Route::get('', [CarController::class, 'own']);
+            Route::prefix('{car}')->group(function () {
+                // Route::get('', [CarController::class, 'own']);
+            });
+        });
+        // user routes
+    });
 
-    // }]);
+    // ADMIN
     Route::prefix('dashboard')->name('dashboard')->middleware('admin')->group(function () {
         Route::get('', function () {
             return view('dashboard');
@@ -40,14 +53,23 @@ Route::middleware('auth')->group(function () {
 
         // CARS
         Route::prefix('cars')->name('.cars')->group(function () {
-            Route::get('', [CarController::class, 'dashboard']);
             Route::get('create', [CarController::class, 'create'])->name('.create');
-            Route::get('store', [CarController::class, 'store'])->name('.store');
+            Route::post('store', [CarController::class, 'store'])->name('.store');
             Route::prefix('{car}')->group(function () {
+                Route::get('info', [CarController::class, 'info'])->name('.info');
+                Route::get('show', [CarController::class, 'show'])->name('.show');
+                Route::get('respond', [CarController::class, 'respond'])->name('.respond');
+                Route::get('photos', [CarController::class, 'photos'])->name('.photos');
                 Route::get('edit', [CarController::class, 'edit'])->name('.edit');
                 Route::post('update', [CarController::class, 'update'])->name('.update');
                 Route::get('delete', [CarController::class, 'delete'])->name('.delete');
+                Route::prefix('properties')->name('.properties')->group(function () {
+                    Route::get('', [CarController::class, 'properties']);
+                    Route::get('edit', [CarPropertiesController::class, 'edit'])->name('.edit');
+                    Route::post('update', [CarPropertiesController::class, 'update'])->name('.update');
+                });
             });
+            Route::get('', [CarController::class, 'dashboard']);
         });
 
         // PROPERTIES

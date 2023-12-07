@@ -24,11 +24,13 @@
             <tbody>
                 @foreach ($cars as $car)
                     <tr class="border-b even:bg-gray-50">
-                        <td class="px-4 py-3">{{ $car->title }}</td>
+                        <td class="px-4 py-3">
+                            <a class="hover:underline" href="{{ route('dashboard.cars.info', compact('car')) }}">{{ $car->title }}</a>
+                        </td>
                         <td class="flex justify-end py-3 text-right">
-                            <a title="Bewerken" href="{{ route('dashboard.cars.edit', compact('car')) }}"
+                            <a title="Bewerken" href="{{ route('dashboard.cars.info', compact('car')) }}"
                                 class="text-blue-700 hover:underline">
-                                <x-edit-icon></x-edit-icon>
+                                <x-eye-icon></x-eye-icon>
                             </a>
                             <a title="Verwijderen" href="{{ route('dashboard.cars.delete', compact('car')) }}"
                                 class="text-red-500 hover:underline"
