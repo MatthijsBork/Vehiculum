@@ -1,12 +1,16 @@
-<x-dashboard-layout>
+<x-layout>
     @csrf
+
+    <x-slot name="menuSlot">
+        <x-user-menu></x-user-menu>
+    </x-slot>
 
     <x-slot name="titleSlot">
         <p>{{ $car->title }}</p>
     </x-slot>
 
     <x-slot name="buttonSlot">
-        <x-primary-link href="{{ route('dashboard.cars.edit', compact('car')) }}">Informatie bewerken</x-primary-link>
+        <x-primary-link href="{{ route('user.cars.edit', compact('car')) }}">Informatie bewerken</x-primary-link>
     </x-slot>
 
     <x-car-tab-menu :car="$car"></x-car-tab-menu>
@@ -41,4 +45,4 @@
 
         </div>
     </div>
-</x-dashboard-layout>
+</x-layout>

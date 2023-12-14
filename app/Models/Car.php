@@ -23,4 +23,14 @@ class Car extends Model
     {
         return Property::all();
     }
+
+    public function images()
+    {
+        return $this->hasMany(CarImage::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

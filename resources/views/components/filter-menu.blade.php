@@ -2,7 +2,7 @@
     <h2 class="mb-4 text-lg font-semibold">Menu</h2>
     <ul>
         <li class="mb-2">
-            <x-button-link href="{{ route('index') }}" :active="request()->routeIs('index*')">Auto's</x-button-link>
+            <x-button-link href="{{ route('index') }}" :active="request()->routeIs('*')">Auto's</x-button-link>
         </li>
     </ul>
 </div>

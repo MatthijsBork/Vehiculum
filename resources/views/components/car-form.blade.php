@@ -77,8 +77,8 @@
     </div>
 
     <div class="text-right">
-        <a class="text-red-500 hover:underline mr-4"
-            href="{{ route('dashboard.cars.info', compact('car')) }}">Annuleren</a>
+        <a class="text-red-500 hover:underline mr-4" <a class="text-red-500 hover:underline mr-4"
+            href="javascript:history.back()">Annuleren</a>
         <x-primary-button type="submit">Opslaan</x-primary-button>
     </div>
 </form>

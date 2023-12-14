@@ -2,14 +2,18 @@
     @csrf
 
     <x-slot name="titleSlot">
-        <a href="">
-            < Terug</a>
+        <a class="text-red-500 hover:underline mr-4" href="javascript:history.back()">
+            < Terug </a>
     </x-slot>
 
     <div class="p-2">
         <div class="flex md:flex-row w-full flex-col-reverse justify-between">
             <div class="flex md:flex-row flex-col w-full justify-between">
-                <x-img-carousel></x-img-carousel>
+                <div class="max-w-lg">
+                    <img src="{{ asset('images/cars/' . $car->id . '/' . $car->images->first()->img) }}"
+                        class="object-cover overflow-hidden rounded-lg" />
+
+                </div>
                 <div class="flex md:flex-row flex-col md:w-1/2 justify-between">
                     <div class="w-full flex flex-col gap-5 px-4 justify-between">
                         <div>
@@ -20,10 +24,11 @@
                             <p>{{ $car->description }}</p>
                             <hr class="my-3">
                             <h2 class="text-xl font-semibold">€{{ $car->price }}</h2>
+                            <p class="my-4">
+                                <x-primary-link
+                                    href="{{ route('cars.respond', compact('car')) }}">Reageren</x-primary-link>
+                            </p>
                         </div>
-                        <p class="">
-                            <x-primary-button href="">Reageren</x-primary-button>
-                        </p>
                     </div>
                 </div>
             </div>

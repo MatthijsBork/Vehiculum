@@ -47,13 +47,17 @@
                         <div class="w-full">
                             <div class="mb-2 flex items-center justify-between">
                                 <div class="flex-shrink-0">
-                                    <h1 class="text-2xl font-semibold">{{ $titleSlot ?? "Auto's" }}</h1>
+                                    <h1 class="text-2xl font-semibold">{{ $titleSlot }}</h1>
                                 </div>
                                 <div class="flex-grow mx-6">
-                                    <x-search :action="null"></x-search>
+                                    @if (isset($searchSlot))
+                                        {{ $searchSlot }}
+                                    @endif
                                 </div>
                                 <div class="flex-shrink-0">
-                                    <x-primary-button>Toevoegen</x-primary-button>
+                                    @if (isset($buttonSlot))
+                                        {{ $buttonSlot }}
+                                    @endif
                                 </div>
                             </div>
                             <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">
