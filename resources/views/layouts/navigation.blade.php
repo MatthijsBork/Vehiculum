@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('cars.index')" :active="request()->routeIs('cars*')">
+                    <x-nav-link :href="route('cars.index')" :active="request()->routeIs('/', 'cars*')">
                         Auto's
                     </x-nav-link>
                     @if ((Auth::user()->is_admin ?? 0) == 1)

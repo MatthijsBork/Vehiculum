@@ -59,8 +59,7 @@ class UserCarController extends Controller
 
         $cars = Car::where('user_id', '=', Auth::user()->id)
             ->where('title', 'like', "%$query%")
-            ->orderBy('title')
-            ->get();
+            ->orderBy('title')->paginate(10);
 
         return view('cars.own', compact('cars'));
     }

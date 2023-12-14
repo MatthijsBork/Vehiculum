@@ -10,7 +10,7 @@
     <x-slot name="titleSlot">Mijn auto's</x-slot>
 
     <x-slot name="buttonSlot">
-        <x-primary-link href="{{ route('user.cars.create') }}">Toevoegen</x-primary-link>
+        <x-primary-link href="{{ route('user.cars.create') }}">Auto toevoegen</x-primary-link>
     </x-slot>
 
     @if (!isset($cars[0]))
@@ -23,6 +23,9 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-4 py-3">Titel</th>
+                    <th class="px-4 py-3">Jaar</th>
+                    <th class="px-4 py-3">Prijs</th>
+                    <th class="px-4 py-3">Kilometerstand</th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,6 +35,15 @@
                         <td class="px-4 py-3">
                             <a class="hover:underline"
                                 href="{{ route('user.cars.info', compact('car')) }}">{{ $car->title }}</a>
+                        </td>
+                        <td class="px-4 py-3">
+                            <p>{{ $car->year }}</p>
+                        </td>
+                        <td class="px-4 py-3">
+                            <p>€{{ $car->price }}</p>
+                        </td>
+                        <td class="px-4 py-3">
+                            <p>{{ $car->mileage }}</p>
                         </td>
                         <td class="flex justify-end py-3 text-right">
                             <a title="Bekijken" href="{{ route('cars.show', compact('car')) }}"
@@ -52,5 +64,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="my-4">
+            {{ $cars->links() }}
+        </div>
     @endif
 </x-layout>

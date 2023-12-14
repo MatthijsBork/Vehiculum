@@ -18,14 +18,6 @@ use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $users = User::where('name', 'LIKE', "%$query%")->paginate(10)->withQueryString();
-
-        return view('users.dashboard', compact('users'));
-    }
-
     public function create()
     {
         return view('users.create');

@@ -60,9 +60,13 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">
-                                {{ $slot }}
-                            </div>
+                            @if ($noBackgroundSlot)
+                                {{ $noBackgroundSlot }}
+                            @else
+                                <div class="p-6 overflow-x-auto bg-white shadow-sm sm:rounded-lg">
+                                    {{ $slot }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

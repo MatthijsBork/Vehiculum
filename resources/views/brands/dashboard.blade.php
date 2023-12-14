@@ -40,5 +40,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="my-4">
+            {{ $brands->links() }}
+        </div>
     @endif
 </x-dashboard-layout>

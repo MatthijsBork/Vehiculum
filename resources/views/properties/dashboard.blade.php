@@ -41,5 +41,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="my-4">
+            {{ $properties->links() }}
+        </div>
     @endif
 </x-dashboard-layout>

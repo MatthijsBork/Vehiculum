@@ -18,6 +18,9 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-4 py-3">Titel</th>
+                    <th class="px-4 py-3">Jaar</th>
+                    <th class="px-4 py-3">Prijs</th>
+                    <th class="px-4 py-3">Kilometerstand</th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,7 +28,17 @@
                 @foreach ($cars as $car)
                     <tr class="border-b even:bg-gray-50">
                         <td class="px-4 py-3">
-                            <a class="hover:underline" href="{{ route('dashboard.cars.info', compact('car')) }}">{{ $car->title }}</a>
+                            <a class="hover:underline"
+                                href="{{ route('dashboard.cars.info', compact('car')) }}">{{ $car->title }}</a>
+                        </td>
+                        <td class="px-4 py-3">
+                            <p>{{ $car->year }}</p>
+                        </td>
+                        <td class="px-4 py-3">
+                            <p>€{{ $car->price }}</p>
+                        </td>
+                        <td class="px-4 py-3">
+                            <p>{{ $car->mileage }}</p>
                         </td>
                         <td class="flex justify-end py-3 text-right">
                             <a title="Bewerken" href="{{ route('dashboard.cars.info', compact('car')) }}"
@@ -42,5 +55,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="my-4">
+            {{ $cars->links() }}
+        </div>
     @endif
 </x-dashboard-layout>
